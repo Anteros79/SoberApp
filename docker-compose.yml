@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  nextjs-app:
+    container_name: {{APP_NAME}}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - '3000:3000'
+    restart: always
+    env_file:
+      - .env.local
+    command: npm run dev
